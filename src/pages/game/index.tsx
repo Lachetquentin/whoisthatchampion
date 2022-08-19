@@ -22,7 +22,7 @@ const Game = () => {
   }, []);
 
   const onGuess = useCallback(() => {
-    if (guess.value === dailyChampion.name) {
+    if (guess.value.toLowerCase() === dailyChampion.name.toLowerCase()) {
       setHasWin(true);
     } else {
       setNbTry((e: number) => e + 1);
@@ -58,7 +58,7 @@ const Game = () => {
       <div className="flex flex-nowrap">
         <p>{purgeByName(dailyChampion.lore, dailyChampion.name)}</p>
 
-        {nbTry >= 2 && (
+        {hasWin && (
           <img
             alt="champion"
             className="h-64 w-64"
@@ -67,7 +67,9 @@ const Game = () => {
         )}
       </div>
 
-      {nbTry >= 1 && <p className="justify-end flex">{dailyChampion.title}</p>}
+      {nbTry >= 1 || hasWin ? (
+        <p className="justify-end flex">{dailyChampion.title}</p>
+      ) : null}
 
       <div className="justify-center items-center flex flex-nowrap">
         <Input
@@ -85,7 +87,7 @@ const Game = () => {
         />
       </div>
       {hasWin && (
-        <p className="text-green-400">
+        <p className="text-green-400 uppercase font-bold justify-center text-center text-2xl">
           gagné !! c&apos;était bien {dailyChampion.name} !!!
         </p>
       )}
