@@ -28,9 +28,7 @@ const Button: React.FC<ButtonProps> = ({
       type="submit"
       className={`
         w-full
-        flex justify-center items-center
-        border
-        rounded-[16px] cursor-pointer
+        flex justify-center items-center cursor-pointer
         ${className}
       `}
       onClick={onClick}

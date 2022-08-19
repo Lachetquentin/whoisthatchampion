@@ -33,7 +33,7 @@ const Input: React.FC<InputProps> = ({
       )}
       <input
         type={type || 'text'}
-        className="w-full rounded-lg px-4 py-2 border-[1px] outline-none bg-white border-greylight placeholder-lightgrey text-black"
+        className="w-full px-4 py-2 border-[1px] outline-none bg-white border-greylight placeholder-lightgrey text-black"
         onChange={(evt) =>
           setForm((e: any) => {
             const copy = { ...e };

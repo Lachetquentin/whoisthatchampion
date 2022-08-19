@@ -1,14 +1,16 @@
+import { useEffect, useState, useCallback } from 'react';
 import Input from 'components/shared/input';
-import { useEffect, useState } from 'react';
 import lolServices from 'services/lol';
 import { getDailyChampion } from 'utils/dailies';
 import { DailyType } from 'types/daily';
 import { purgeByName } from 'utils/champions';
-import Link from 'next/link';
+import Button from 'components/shared/button';
 
 const Game = () => {
   const [guess, setGuess] = useState<{ value: string }>({ value: '' });
   const [dailyChampion, setDailyChampion] = useState<any>(null);
+  const [nbTry, setNbTry] = useState<number>(0);
+  const [hasWin, setHasWin] = useState<boolean>(false);
 
   useEffect(() => {
     const getChampionInfos = async (dailyInfos: DailyType) => {
@@ -19,22 +21,75 @@ const Game = () => {
     getChampionInfos(dailyInfos as DailyType);
   }, []);
 
+  const onGuess = useCallback(() => {
+    if (guess.value === dailyChampion.name) {
+      setHasWin(true);
+    } else {
+      setNbTry((e: number) => e + 1);
+    }
+    setGuess({ value: '' });
+  }, [dailyChampion, guess]);
+
+  const handleKeyPress = useCallback(
+    (event: any) => {
+      const key = event.key;
+
+      if (key === 'Enter') {
+        return onGuess();
+      }
+    },
+    [onGuess]
+  );
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyPress, false);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress, false);
+    };
+  }, [handleKeyPress]);
+
   if (!dailyChampion) return null;
   return (
-    <div className="h-screen w-screen flex flex-col justify-center items-center">
+    <>
       <div className="text-2xl text-center p-2">
-        <p>Which Champion is that ?</p>
+        <p>Who is that champion ?</p>
       </div>
-      <p>{dailyChampion.name}</p>
-      <p>{dailyChampion.title}</p>
-      <p>{purgeByName(dailyChampion.lore, dailyChampion.name)}</p>
-      <Input name="value" setForm={setGuess} value={guess.value} />
-      <div className="w-full text-xl text-center pb-2">
-        <a href="https://github.com/">Github</a>
-        <p className="p-4">{'-'}</p>
-        <Link href="/about">About</Link>
+      <div className="flex flex-nowrap">
+        <p>{purgeByName(dailyChampion.lore, dailyChampion.name)}</p>
+
+        {nbTry >= 2 && (
+          <img
+            alt="champion"
+            className="h-64 w-64"
+            src={`https://ddragon.leagueoflegends.com/cdn/12.4.1/img/champion/${dailyChampion.id}.png`}
+          />
+        )}
       </div>
-    </div>
+
+      {nbTry >= 1 && <p className="justify-end flex">{dailyChampion.title}</p>}
+
+      <div className="justify-center items-center flex flex-nowrap">
+        <Input
+          name="value"
+          setForm={setGuess}
+          value={guess.value}
+          placeholder="Type champion name..."
+        />
+
+        <Button
+          onClick={onGuess}
+          className="bg-[#0CC6E3] max-w-[150px] py-[16px]"
+          textClassName="uppercase text-black font-semibold"
+          label="Guess"
+        />
+      </div>
+      {hasWin && (
+        <p className="text-green-400">
+          gagné !! c&apos;était bien {dailyChampion.name} !!!
+        </p>
+      )}
+    </>
   );
 };
 

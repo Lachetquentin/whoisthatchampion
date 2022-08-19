@@ -1,11 +1,14 @@
+import Footer from 'components/shared/footer';
+
 interface PageLayoutProps {
   children: React.ReactNode;
 }
 
 const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
   return (
-    <div className="bg-[#FAFAFA] w-full h-full">
+    <div className="w-full min-h-screen overflow-auto">
       <div className="max-w-[720px] mx-auto pt-[16px]">{children}</div>
+      <Footer />
     </div>
   );
 };
