@@ -5,11 +5,17 @@ interface GameInputProps {
   guess: { value: string };
   setGuess: (guess: { value: string }) => void;
   onGuess: () => void;
+  hasWin?: boolean;
 }
 
-const GameInput: React.FC<GameInputProps> = ({ setGuess, guess, onGuess }) => {
+const GameInput: React.FC<GameInputProps> = ({
+  setGuess,
+  guess,
+  onGuess,
+  hasWin,
+}) => {
   return (
-    <div className="fixed bottom-0 w-full left-0 justify-center items-center flex flex-wrap h-[45px]">
+    <div className="w-full left-0 justify-center items-center flex flex-wrap h-[45px] mt-[64px] rounded-[6px] overflow-hidden">
       <Input
         name="value"
         setForm={setGuess}
