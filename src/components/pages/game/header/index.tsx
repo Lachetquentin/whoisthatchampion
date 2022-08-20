@@ -7,9 +7,9 @@ const GameHeader = () => {
 
   return (
     <div className="flex flex-col items-center mb-[32px]">
-      <h1 className="text-[32px] beaufort uppercase">Guess the champion</h1>
+      <h1 className="text-[32px] beaufort uppercase">Devine le champion</h1>
       <p>
-        Yesterday&apos;s champion was...{' '}
+        Le champion d&apos;hier était...{' '}
         <span className="text-[#d0a85c] beaufort uppercase">
           {yesterdayChamp?.championName}
         </span>
