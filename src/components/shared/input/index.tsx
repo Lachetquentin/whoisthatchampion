@@ -6,8 +6,10 @@ interface InputProps {
   name: string;
   value: string;
   className?: string;
+  inputClassName?: string;
   mandatory?: boolean;
   type?: string;
+  style?: React.CSSProperties;
   placeholder?: string;
 }
 
@@ -17,12 +19,14 @@ const Input: React.FC<InputProps> = ({
   className,
   label,
   setForm,
+  inputClassName,
   name,
   value,
+  style = {},
   placeholder,
 }) => {
   return (
-    <div className={className}>
+    <div className={className} style={style}>
       {label && (
         <p className="text-grey mb-[6px]">
           {label}
@@ -33,7 +37,7 @@ const Input: React.FC<InputProps> = ({
       )}
       <input
         type={type || 'text'}
-        className="w-full px-4 py-2 border-[1px] outline-none bg-white border-greylight placeholder-lightgrey text-black"
+        className={`outline-none placeholder-lightgrey text-black ${inputClassName}`}
         onChange={(evt) =>
           setForm((e: any) => {
             const copy = { ...e };

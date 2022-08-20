@@ -139,8 +139,7 @@ const dailies: DailyType[] = [
 
 export default dailies;
 
-export const getDailyChampion = () => {
-  const date = new Date();
+export const getDailyChampion = (date: Date) => {
   const dailyFound = dailies.find((e: any) => {
     const dailyDate = new Date(e.date);
     const isSameDay =
