@@ -26,10 +26,7 @@ const GameInput: React.FC<GameInputProps> = ({
           </p>
         </div>
       ) : (
-        <div
-          div
-          className="w-full left-0 justify-center items-center flex flex-wrap h-[45px] mt-[64px] rounded-[6px] overflow-hidden"
-        >
+        <div className="w-full left-0 justify-center items-center flex flex-wrap h-[45px] mt-[64px] rounded-[6px] overflow-hidden">
           <Input
             name="value"
             setForm={setGuess}
