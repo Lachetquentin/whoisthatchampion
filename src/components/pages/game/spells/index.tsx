@@ -2,6 +2,7 @@ import Button from 'components/shared/button';
 import { E_STEP, PASSIVE_STEP, Q_STEP, R_STEP, W_STEP } from 'constants/steps';
 import { useCallback, useState } from 'react';
 import { purgeByName } from 'utils/champions';
+import GameSpellsDescription from './description';
 import GameSpellsIcon from './icon';
 
 interface GameSpellsProps {
@@ -55,18 +56,14 @@ const GameSpells: React.FC<GameSpellsProps> = ({
         ))}
       </div>
       {showDescription && (
-        <div className="w-[350px] mx-auto">
-          <h2 className="text-base mt-2 mx-4 text-gray-400 font-semibold text-center">
-            {hasWin
-              ? dailyChampion.spells[abilityId]?.description ??
-                dailyChampion.passive.description
-              : purgeByName(
-                  dailyChampion.spells[abilityId]?.description ??
-                    dailyChampion.passive.description,
-                  dailyChampion.name
-                )}
-          </h2>
-        </div>
+        <GameSpellsDescription
+          separator={dailyChampion.name}
+          hasWin={hasWin}
+          description={
+            dailyChampion.spells[abilityId]?.description ??
+            dailyChampion.passive.description
+          }
+        />
       )}
     </>
   );

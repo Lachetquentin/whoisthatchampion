@@ -11,13 +11,15 @@ const GameLore: React.FC<GameLoreProps> = ({ lore, separator, hasWin }) => {
     <div className="mt-[24px] mb-[24px]">
       {!hasWin && (
         <p>
-          {lore.split(separator).map((e) => {
+          {lore.split(separator).map((e, index) => {
             if (e === '') return null;
             return (
               <span key={e}>
-                <span className="bg-gray-700 text-gray-700 rounded-[2px] custom-pulse">
-                  ******
-                </span>
+                {index > 0 && (
+                  <span className="bg-gray-700 text-gray-700 rounded-[2px]">
+                    ******
+                  </span>
+                )}
                 <span>{e}</span>
               </span>
             );
