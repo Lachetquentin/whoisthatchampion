@@ -42,7 +42,7 @@ const GameSpells: React.FC<GameSpellsProps> = ({
   }
   return (
     <>
-      <div className="flex flex-nowrap justify-center items-center p-2 space-x-5 ">
+      <div className="flex flex-nowrap justify-center items-center p-2 space-x-[12px] max-w-[500px] mx-auto">
         {spellsData.map((spell) => (
           <GameSpellsIcon
             key={spell.abilityId}

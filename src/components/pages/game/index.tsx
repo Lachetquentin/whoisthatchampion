@@ -2,13 +2,12 @@ import { useEffect, useState, useCallback } from 'react';
 import lolServices from 'services/lol';
 import { getDailyChampion } from 'utils/dailies';
 import { DailyType } from 'types/daily';
-import { purgeByName } from 'utils/champions';
-import Button from 'components/shared/button';
 import GameHeader from './header';
-import UnknownPng from 'images/unknown.png';
 import GameInput from './input';
 import GameSpells from './spells';
-import { LORE_STEP, PICTURE_STEP, TITLE_STEP } from 'constants/steps';
+import { TITLE_STEP } from 'constants/steps';
+import GameLore from './lore';
+import GamePicture from './picture';
 
 const Game = () => {
   const [guess, setGuess] = useState<{ value: string }>({ value: '' });
@@ -24,7 +23,7 @@ const Game = () => {
     const dailyInfos = getDailyChampion(new Date());
     getChampionInfos(dailyInfos as DailyType);
   }, []);
-  console.log(dailyChampion);
+
   const onGuess = useCallback(() => {
     if (!guess.value || guess.value.trim() === '') return;
     if (guess.value.toLowerCase() === dailyChampion.name.toLowerCase()) {
@@ -60,14 +59,10 @@ const Game = () => {
       <div className="p-[16px] relative">
         <GameHeader />
 
-        <img
-          alt="champion"
-          className="h-[120px] w-[120px] text-center mx-auto mb-[32px] bg-gray-800 rounded-full"
-          src={
-            hasWin || nbTry >= PICTURE_STEP
-              ? `https://ddragon.leagueoflegends.com/cdn/12.15.1/img/champion/${dailyChampion.id}.png`
-              : UnknownPng.src
-          }
+        <GamePicture
+          nbTry={nbTry}
+          championId={dailyChampion.id}
+          hasWin={hasWin}
         />
 
         {(nbTry >= TITLE_STEP || hasWin) && (
@@ -78,18 +73,15 @@ const Game = () => {
 
         {hasWin && (
           <p className="text-green-400 uppercase font-bold justify-center text-center text-[32px] beaufort italic">
-            {dailyChampion.name}
+            - {dailyChampion.name} -
           </p>
         )}
 
-        {(hasWin || nbTry >= LORE_STEP) && (
-          <p className="my-[16px] px-[8px]">
-            {hasWin
-              ? dailyChampion.lore
-              : purgeByName(dailyChampion.lore, dailyChampion.name)}
-          </p>
-        )}
-
+        <GameLore
+          hasWin={hasWin}
+          separator={dailyChampion.name}
+          lore={dailyChampion.lore}
+        />
         <GameSpells
           nbTry={nbTry}
           hasWin={hasWin}
