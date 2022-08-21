@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/react-modal": "^3.13.1",
     "autoprefixer": "^10.4.8",
     "axios": "^0.27.2",
     "next": "12.2.5",

@@ -8,7 +8,7 @@ interface WinModalProps {
   gameIndex: number;
 }
 
-const modalStyles = {
+const modalStyles: any = {
   content: {
     top: '50%',
     left: '50%',
@@ -51,11 +51,7 @@ const WinModal: React.FC<WinModalProps> = ({
   };
 
   return (
-    <Modal
-      appElement={document.getElementById('app')}
-      isOpen={true}
-      style={modalStyles}
-    >
+    <Modal isOpen={true} style={modalStyles}>
       <img src={VictoryPng.src} className="w-[400px] mx-auto" />
       <p
         className={`uppercase beaufort text-center text-green-400

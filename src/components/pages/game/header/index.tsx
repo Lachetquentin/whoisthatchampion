@@ -13,8 +13,8 @@ const GameHeader = () => {
     };
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
-    const yesterdayChamp = getDailyChampion(yesterday);
-    getChampionInfos(yesterdayChamp as DailyType);
+    const { dailyFound } = getDailyChampion(yesterday);
+    getChampionInfos(dailyFound as DailyType);
   }, []);
 
   return (
