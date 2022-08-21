@@ -10,25 +10,45 @@ import GameLore from './lore';
 import GamePicture from './picture';
 import GameTags from './tags';
 import GameRoles from './roles';
+import WinModal from 'components/modals/winModal';
+
+const getDailyDateValue = () => {
+  const date = new Date();
+
+  return `${date.getFullYear()}${date.getMonth()}${date.getDate()}`;
+};
 
 const Game = () => {
   const [guess, setGuess] = useState<{ value: string }>({ value: '' });
   const [dailyChampion, setDailyChampion] = useState<any>(null);
   const [nbTry, setNbTry] = useState<number>(0);
   const [hasWin, setHasWin] = useState<boolean>(false);
+  const [gameNb, setGameNb] = useState<number>(0);
+
+  useEffect(() => {
+    const dailyDateValue = getDailyDateValue();
+    const dailyGameCookie = localStorage.getItem(`lglg-${dailyDateValue}`);
+    console.log(dailyGameCookie);
+    if (!!dailyGameCookie) setHasWin(true);
+  }, []);
 
   useEffect(() => {
     const getChampionInfos = async (dailyInfos: DailyType) => {
       const res = await lolServices.getChampionInfos(dailyInfos?.championName);
       setDailyChampion(res.data.data[dailyInfos.championName]);
     };
-    const dailyInfos = getDailyChampion(new Date());
-    getChampionInfos(dailyInfos as DailyType);
+    const { dailyFound, gameIndex } = getDailyChampion(new Date());
+    setGameNb(gameIndex);
+    getChampionInfos(dailyFound as DailyType);
   }, []);
 
   const onGuess = useCallback(() => {
     if (!guess.value || guess.value.trim() === '') return;
     if (guess.value.toLowerCase() === dailyChampion.name.toLowerCase()) {
+      const dailyDate = new Date();
+      const dateValue = `${dailyDate.getFullYear()}${dailyDate.getMonth()}${dailyDate.getDate()}`;
+      const dailyCookie = 'lglg-' + dateValue;
+      localStorage.setItem(dailyCookie, 'true');
       setHasWin(true);
     } else {
       setNbTry((e: number) => e + 1);
@@ -109,6 +129,13 @@ const Game = () => {
           onGuess={onGuess}
         />
       </div>
+      {hasWin && (
+        <WinModal
+          gameIndex={gameNb}
+          nbTry={nbTry}
+          dailyChampion={dailyChampion}
+        />
+      )}
     </>
   );
 };

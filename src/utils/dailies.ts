@@ -139,7 +139,9 @@ const dailies: DailyType[] = [
 ];
 
 export const getDailyChampion = (date: Date) => {
-  const dailyFound = dailies.find((e: any) => {
+  let gameIndex = 0;
+
+  const dailyFound = dailies.find((e: any, index: number) => {
     const dailyDate = new Date(e.date);
     const isSameDay =
       dailyDate.getDate() -
@@ -149,7 +151,10 @@ export const getDailyChampion = (date: Date) => {
         dailyDate.getMonth() -
         date.getMonth() ===
       0;
+    if (isSameDay) {
+      gameIndex = index;
+    }
     return isSameDay;
   });
-  return dailyFound;
+  return { dailyFound, gameIndex };
 };
