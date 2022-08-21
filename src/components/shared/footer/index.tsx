@@ -3,7 +3,7 @@ import Link from 'next/link';
 const Footer = () => {
   return (
     <footer>
-      <div className="w-full flex justify-center text-center items-center mt-[32px]">
+      <div className="w-full flex justify-center text-center items-center my-[32px]">
         <a
           className="beaufort uppercase text-[16px]"
           href="https://github.com/Lachetquentin/whoisthatchampion"

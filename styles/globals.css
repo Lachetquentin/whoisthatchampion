@@ -4,14 +4,14 @@
 
 @font-face {
   font-family: 'Spiegel';
-  src: url('/styles/fonts/spiegel.ttf');
-  src: url('/styles/fonts/spiegel.ttf');
+  src: url('/public/fonts/spiegel.ttf');
+  src: url('/public/fonts/spiegel.ttf');
 }
 
 @font-face {
   font-family: 'BeaufortforLOL-Heavy';
-  src: url('/styles/fonts/beaufortforlol-heavy.otf');
-  src: url('/styles/fonts/beaufortforlol-heavy.otf');
+  src: url('/public/fonts/beaufortforlol-heavy.otf');
+  src: url('/public/fonts/beaufortforlol-heavy.otf');
 }
 
 html,

@@ -8,13 +8,14 @@ import GameSpells from './spells';
 import { TITLE_STEP } from 'constants/steps';
 import GameLore from './lore';
 import GamePicture from './picture';
+import GameTags from './tags';
 
 const Game = () => {
   const [guess, setGuess] = useState<{ value: string }>({ value: '' });
   const [dailyChampion, setDailyChampion] = useState<any>(null);
   const [nbTry, setNbTry] = useState<number>(0);
   const [hasWin, setHasWin] = useState<boolean>(false);
-
+  console.log(dailyChampion);
   useEffect(() => {
     const getChampionInfos = async (dailyInfos: DailyType) => {
       const res = await lolServices.getChampionInfos(dailyInfos?.championName);
@@ -65,8 +66,11 @@ const Game = () => {
           hasWin={hasWin}
         />
 
+        <p className="text-center mb-[16px]">Tu recherches...</p>
+        <GameTags nbTry={nbTry} hasWin={hasWin} tags={dailyChampion.tags} />
+
         {(nbTry >= TITLE_STEP || hasWin) && (
-          <p className="text-center beaufort uppercase italic text-[24px] leading-[16px] mt-[16px] custom-pulse">
+          <p className="text-center beaufort uppercase italic text-[24px] leading-[16px] custom-pulse mb-[8px]">
             {dailyChampion.title}
           </p>
         )}
@@ -78,6 +82,7 @@ const Game = () => {
         )}
 
         <GameLore
+          nbTry={nbTry}
           hasWin={hasWin}
           separator={dailyChampion.name}
           lore={dailyChampion.lore}

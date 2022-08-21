@@ -1,13 +1,21 @@
 import HiddenText from 'components/shared/hiddenText';
+import { LORE_STEP } from 'constants/steps';
 import React from 'react';
 
 interface GameLoreProps {
   lore: string;
   separator: string;
   hasWin: boolean;
+  nbTry: number;
 }
 
-const GameLore: React.FC<GameLoreProps> = ({ lore, separator, hasWin }) => {
+const GameLore: React.FC<GameLoreProps> = ({
+  lore,
+  separator,
+  hasWin,
+  nbTry,
+}) => {
+  if (nbTry < LORE_STEP && !hasWin) return null;
   return (
     <div className="mt-[24px] mb-[24px]">
       {!hasWin && (

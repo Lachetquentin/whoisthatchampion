@@ -38,7 +38,7 @@ const GameSpells: React.FC<GameSpellsProps> = ({
     [abilityId, showDescription]
   );
 
-  if (nbTry < 2 && !hasWin) {
+  if (nbTry < PASSIVE_STEP && !hasWin) {
     return null;
   }
   return (
