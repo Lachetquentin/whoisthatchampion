@@ -11,7 +11,6 @@ const GameSpellsDescription: React.FC<GameSpellsDescriptionProps> = ({
   hasWin,
   separator,
 }) => {
-  console.log(description.split(separator));
   return (
     <div className="w-[350px] mx-auto">
       {!hasWin && (

@@ -15,7 +15,7 @@ const Game = () => {
   const [dailyChampion, setDailyChampion] = useState<any>(null);
   const [nbTry, setNbTry] = useState<number>(0);
   const [hasWin, setHasWin] = useState<boolean>(false);
-  console.log(dailyChampion);
+
   useEffect(() => {
     const getChampionInfos = async (dailyInfos: DailyType) => {
       const res = await lolServices.getChampionInfos(dailyInfos?.championName);
