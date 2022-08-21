@@ -9,6 +9,7 @@ import { TITLE_STEP } from 'constants/steps';
 import GameLore from './lore';
 import GamePicture from './picture';
 import GameTags from './tags';
+import GameRoles from './roles';
 
 const Game = () => {
   const [guess, setGuess] = useState<{ value: string }>({ value: '' });
@@ -67,11 +68,20 @@ const Game = () => {
         />
 
         <p className="text-center mb-[16px]">Tu recherches...</p>
+
+        <GameRoles
+          championId={dailyChampion.id}
+          nbTry={nbTry}
+          hasWin={hasWin}
+        />
         <GameTags nbTry={nbTry} hasWin={hasWin} tags={dailyChampion.tags} />
 
         {(nbTry >= TITLE_STEP || hasWin) && (
-          <p className="text-center beaufort uppercase italic text-[24px] leading-[16px] custom-pulse mb-[8px]">
-            {dailyChampion.title}
+          <p className="text-center text-[20px] custom-pulse mb-[8px] mt-[16px]">
+            aussi appelé{' '}
+            <span className="beaufort italic text-[24px]">
+              {dailyChampion.title.toUpperCase()}
+            </span>
           </p>
         )}
 
