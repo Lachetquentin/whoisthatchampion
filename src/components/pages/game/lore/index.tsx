@@ -1,3 +1,4 @@
+import HiddenText from 'components/shared/hiddenText';
 import React from 'react';
 
 interface GameLoreProps {
@@ -15,11 +16,7 @@ const GameLore: React.FC<GameLoreProps> = ({ lore, separator, hasWin }) => {
             if (e === '') return null;
             return (
               <span key={e}>
-                {index > 0 && (
-                  <span className="bg-gray-700 text-gray-700 rounded-[2px]">
-                    ******
-                  </span>
-                )}
+                {index > 0 && <HiddenText />}
                 <span>{e}</span>
               </span>
             );

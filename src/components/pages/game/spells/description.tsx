@@ -1,3 +1,5 @@
+import HiddenText from 'components/shared/hiddenText';
+
 interface GameSpellsDescriptionProps {
   description: string;
   hasWin: boolean;
@@ -18,15 +20,16 @@ const GameSpellsDescription: React.FC<GameSpellsDescriptionProps> = ({
             if (e === '') return null;
             return (
               <span key={e}>
-                {index > 0 && (
-                  <span className="bg-gray-700 text-gray-700 rounded-[2px]">
-                    ******
-                  </span>
-                )}
+                {index > 0 && <HiddenText />}
                 <span>{e}</span>
               </span>
             );
           })}
+        </p>
+      )}
+      {hasWin && (
+        <p className="text-base mt-2 mx-4 text-gray-400 font-semibold text-center">
+          {description}
         </p>
       )}
     </div>

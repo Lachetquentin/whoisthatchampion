@@ -38,7 +38,7 @@ const GameSpells: React.FC<GameSpellsProps> = ({
     [abilityId, showDescription]
   );
 
-  if (nbTry < 2) {
+  if (nbTry < 2 && !hasWin) {
     return null;
   }
   return (
@@ -51,7 +51,7 @@ const GameSpells: React.FC<GameSpellsProps> = ({
             abilityId={spell.abilityId}
             championId={dailyChampion.id}
             onIconPress={onIconPress}
-            hidden={nbTry < spell.showAtTry}
+            hidden={nbTry < spell.showAtTry && !hasWin}
           />
         ))}
       </div>
