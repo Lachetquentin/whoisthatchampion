@@ -2,7 +2,7 @@ import { DailyType } from 'types/daily';
 
 const dailies: DailyType[] = [
   { date: '2022-08-20T00:00:00.000Z', championName: 'Kassadin' },
-  { date: '2022-08-21T00:00:00.000Z', championName: 'Garen' },
+  { date: '2022-08-21T00:00:00.000Z', championName: 'Xerath' },
   { date: '2022-08-22T00:00:00.000Z', championName: 'Ezreal' },
   { date: '2022-08-23T00:00:00.000Z', championName: 'Leblanc' },
   { date: '2022-08-24T00:00:00.000Z', championName: 'Viktor' },
@@ -135,7 +135,7 @@ const dailies: DailyType[] = [
   { date: '2022-12-29T23:00:00.000Z', championName: 'Kennen' },
   { date: '2022-12-30T23:00:00.000Z', championName: 'Rumble' },
   { date: '2022-12-31T23:00:00.000Z', championName: 'Katarina' },
-  { date: '2023-01-01T23:00:00.000Z', championName: 'Xerath' },
+  { date: '2023-01-01T23:00:00.000Z', championName: 'Garen' },
 ];
 
 export const getDailyChampion = (date: Date) => {
