@@ -1,5 +1,5 @@
-import Button from 'components/shared/button';
-import PageLayout from 'components/shared/layout/page';
+import Button from 'lol/components/shared/button';
+import PageLayout from 'lol/components/shared/layout/page';
 import Link from 'next/link';
 
 export default function About() {

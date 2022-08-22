@@ -1,0 +1,10 @@
+export const ROLES_STEP = 1;
+export const TAGS_STEP = 2;
+export const LORE_STEP = 3;
+export const TITLE_STEP = 4;
+export const PASSIVE_STEP = 5;
+export const Q_STEP = 6;
+export const W_STEP = 7;
+export const E_STEP = 8;
+export const R_STEP = 9;
+export const PICTURE_STEP = 10;
