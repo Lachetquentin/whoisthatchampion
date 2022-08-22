@@ -2,8 +2,6 @@ import PkmnGameRowItem from './item';
 import PkmnGameRowItemPkmn from './item/pkmn';
 
 const PkmnGameRow = () => {
-  const rows = [1, 2, 3, 4, 5];
-
   return (
     <div className="grid grid-cols-7 gap-[6px]">
       <PkmnGameRowItemPkmn />

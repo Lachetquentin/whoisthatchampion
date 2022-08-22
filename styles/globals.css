@@ -14,6 +14,12 @@
   src: url('/public/fonts/beaufortforlol-heavy.otf');
 }
 
+@font-face {
+  font-family: 'DynaPuff-Regular';
+  src: url('/public/fonts/dynapuff.ttf');
+  src: url('/public/fonts/dynapuff.ttf');
+}
+
 html,
 body {
   padding: 0;
@@ -39,6 +45,10 @@ a {
 
 .beaufort {
   font-family: 'BeaufortforLOL-Heavy', serif;
+}
+
+.dynapuff {
+  font-family: 'DynaPuff-Regular', serif;
 }
 
 .custom-pulse {
